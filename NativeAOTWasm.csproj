@@ -12,11 +12,11 @@
   <!-- That's customization which I want that SDK have. -->
   <PropertyGroup>
     <!-- <WasmHasCanvas Condition="'$(WasmHasCanvas)' == ''">true</WasmHasCanvas> -->
-    <WasmShellFile Condition="'$(WasmHasCanvas)' == 'true'">shell-file.html</WasmShellFile>
-    <WasmShellFile Condition="'$(WasmHasCanvas)' != 'true'">shell-file-no-canvas.html</WasmShellFile>
+    <WasmHtmlTemplate Condition="'$(WasmHasCanvas)' == 'true'">shell-file.html</WasmHtmlTemplate>
+    <WasmHtmlTemplate Condition="'$(WasmHasCanvas)' != 'true'">shell-file-no-canvas.html</WasmHtmlTemplate>
     <!-- Enable full screen mode. -->
     <EmccExtraArgs Condition="'$(WasmHasCanvas)' == 'true'">$(EmccExtraArgs) -sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=$Browser</EmccExtraArgs>
-    <EmccExtraArgs Condition="'$(WasmShellFile)' != ''">$(EmccExtraArgs) --shell-file $(WasmShellFile)</EmccExtraArgs>
+    <EmccExtraArgs Condition="'$(WasmHtmlTemplate)' != ''">$(EmccExtraArgs) --shell-file $(WasmHtmlTemplate)</EmccExtraArgs>
   </PropertyGroup>
 
 	<ItemGroup>
