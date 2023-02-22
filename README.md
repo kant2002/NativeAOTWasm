@@ -13,3 +13,13 @@ List of properties whih I wan to see in the SDK.
 dotnet publish --self-contained -r browser-wasm /p:msBuildEnableWorkloadResolver=false /p:EmitLegacyAssetsFileItems=true
 npx http-server bin/Debug/net7.0/browser-wasm/publish/
 ```
+
+# Prerequiresites
+
+```
+git clone https://github.com/emscripten-core/emsdk ../emsdk
+cd ../emsdk
+git checkout b4fd475
+cd ../nativeaotwasm
+```
+Set `$env:EMSDK_HOME` to `emsdk` folder.
