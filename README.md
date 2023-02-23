@@ -10,7 +10,7 @@ List of properties whih I wan to see in the SDK.
 # How to test
 ```
 & $env:EMSDK_HOME\emsdk.ps1 activate 3.1.23
-dotnet publish --self-contained -r browser-wasm /p:msBuildEnableWorkloadResolver=false /p:EmitLegacyAssetsFileItems=true
+dotnet publish --self-contained -r browser-wasm /p:msBuildEnableWorkloadResolver=false
 npx http-server bin/Debug/net7.0/browser-wasm/publish/
 ```
 
