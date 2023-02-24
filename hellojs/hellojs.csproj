@@ -8,7 +8,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <WasmHasCanvas>false</WasmHasCanvas>
     <PublishAot>true</PublishAot>
-    <EmccExtraArgs>--js-library $(MSBuildThisFileDirectory)js_exports.js</EmccExtraArgs>
+    <EmccExtraArgs>--js-library $(MSBuildThisFileDirectory)js_exports.js -s EXPORTED_RUNTIME_METHODS=UTF8ToString,stringToUTF8</EmccExtraArgs>
   </PropertyGroup>
 
   <!-- That's customization which I want that SDK have. -->
