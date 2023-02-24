@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WasmHasCanvas>false</WasmHasCanvas>
+    <PublishAot>true</PublishAot>
+    <EmccExtraArgs>--js-library $(MSBuildThisFileDirectory)js_exports.js</EmccExtraArgs>
+  </PropertyGroup>
+
+  <!-- That's customization which I want that SDK have. -->
+  <PropertyGroup>
+    <!-- <WasmHasCanvas Condition="'$(WasmHasCanvas)' == ''">true</WasmHasCanvas> -->
+    <WasmHtmlTemplate Condition="'$(WasmHasCanvas)' == 'true'">shell-file.html</WasmHtmlTemplate>
+    <WasmHtmlTemplate Condition="'$(WasmHasCanvas)' != 'true'">shell-file-no-canvas.html</WasmHtmlTemplate>
+    <!-- Enable full screen mode. -->
+    <EmccExtraArgs Condition="'$(WasmHasCanvas)' == 'true'">$(EmccExtraArgs) -sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=$Browser</EmccExtraArgs>
+  </PropertyGroup>
+
+	<ItemGroup>
+      <!-- Update ILCompiler pack is required since https://github.com/dotnet/sdk/blob/571d48c039a15ab085156cc2d18412aba7638639/src/Tasks/Microsoft.NET.Build.Tasks/ProcessFrameworkReferences.cs#L613-L618 
+          contains implicit assumptions that each TFM can have just one ILC pack.
+          Because _GenerateRestoreGraphProjectEntry which decide what ILC pack to use used ExcludeRestorePackageImports=true
+          There nothing I can do except have KnownILCompilerPack updated in project file. 
+           -->
+      <KnownILCompilerPack Update="Microsoft.DotNet.ILCompiler"
+                         TargetFramework="net7.0"
+                         ILCompilerPackNamePattern="runtime.**RID**.Microsoft.DotNet.ILCompiler.LLVM"
+                         ILCompilerPackVersion="7.0.0-preview.5.23113.1"
+                         ILCompilerRuntimeIdentifiers="browser-wasm;linux-musl-x64;linux-x64;win-x64;linux-arm;linux-arm64;linux-musl-arm;linux-musl-arm64;osx-arm64;osx-x64;win-arm;win-arm64;win-x86"
+                         />
+		<PackageReference Include="Microsoft.DotNet.ILCompiler.LLVM" Version="7.0.0-preview.5.23113.1" />
+		<!-- <PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler.LLVM" Version="7.0.0-preview.5.23113.1" /> -->
+	</ItemGroup>
+
+</Project>
