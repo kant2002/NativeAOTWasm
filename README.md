@@ -15,6 +15,8 @@ dotnet publish --self-contained -r browser-wasm /p:msBuildEnableWorkloadResolver
 npx http-server bin/Debug/net7.0/browser-wasm/publish/
 ```
 
+**Note** Library sample not yet working.
+
 # Prerequiresites
 
 ```
