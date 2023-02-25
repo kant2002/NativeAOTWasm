@@ -8,7 +8,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <WasmHasCanvas>false</WasmHasCanvas>
     <PublishAot>true</PublishAot>
-    <EmccExtraArgs>--js-library $(MSBuildThisFileDirectory)js_exports.js -s EXPORTED_RUNTIME_METHODS=UTF8ToString,stringToUTF8</EmccExtraArgs>
+    <EmccExtraArgs>--js-library &quot;$(MSBuildThisFileDirectory)js_exports.js&quot; -s EXPORTED_RUNTIME_METHODS=UTF8ToString,stringToUTF8</EmccExtraArgs>
   </PropertyGroup>
 
   <!-- That's customization which I want that SDK have. -->
@@ -19,6 +19,17 @@
     <!-- Enable full screen mode. -->
     <EmccExtraArgs Condition="'$(WasmHasCanvas)' == 'true'">$(EmccExtraArgs) -sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=$Browser</EmccExtraArgs>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmccJsLibraryFile Include="js_exports.js" />
+  </ItemGroup>
+
+  <!-- This may be part of ILCompiler.LLVM package -->
+  <ItemGroup>
+    <LinkerArg1 Include="@(EmccJsLibraryFile->'--js-library %(Identity)')" />
+    <LinkerArg1 Include="-s EXPORTED_RUNTIME_METHODS=UTF8ToString,stringToUTF8" />
+    <LinkerArg1 Condition="'$(WasmHasCanvas)' == 'true'" Include="-sDEFAULT_LIBRARY_FUNCS_TO_INCLUDE=$Browser" />
+  </ItemGroup>
 
 	<ItemGroup>
       <!-- Update ILCompiler pack is required since https://github.com/dotnet/sdk/blob/571d48c039a15ab085156cc2d18412aba7638639/src/Tasks/Microsoft.NET.Build.Tasks/ProcessFrameworkReferences.cs#L613-L618 
