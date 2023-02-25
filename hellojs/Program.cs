@@ -5,6 +5,9 @@ Console.WriteLine($"Get following double from function: {Imports.get_double()}")
 Console.WriteLine($"Get following string from function: {Imports.get_string()}");
 Imports.call_no_parameters();
 Imports.alert("This is JS alert");
+int refVal = 22;
+Imports.int_parameter(out var outVal, ref refVal);
+Console.WriteLine($"Get following string from int_parameter: {outVal} and {refVal}. Expected 100 and 39");
 
 static class Imports
 {
@@ -24,4 +27,7 @@ static class Imports
     [DllImport("*")]
     [return: MarshalAs(UnmanagedType.LPUTF8Str)]
     public static extern string get_string();
+
+    [DllImport("*")]
+    public static extern void int_parameter(out int intOut, ref int intRef);
 }

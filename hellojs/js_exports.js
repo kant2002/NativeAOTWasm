@@ -18,4 +18,8 @@ mergeInto(LibraryManager.library, {
       Module.stringToUTF8(value, ptr, length + 1);
       return ptr;
     },
+    int_parameter: function(intOutPtr, intRefPtr) {
+      HEAP32[intOutPtr / 4] = 100;
+      HEAP32[intRefPtr / 4] = HEAP32[intRefPtr / 4] + 17;
+    },
 });
