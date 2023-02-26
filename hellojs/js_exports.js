@@ -22,4 +22,8 @@ mergeInto(LibraryManager.library, {
       HEAP32[intOutPtr / 4] = 100;
       HEAP32[intRefPtr / 4] = HEAP32[intRefPtr / 4] + 17;
     },
+    bool_parameter: function(trueOutPtr, falseOutPtr) {
+      HEAP32[trueOutPtr / 4] = true;
+      HEAP32[falseOutPtr / 4] = true;
+    },
 });
