@@ -3,7 +3,7 @@ mergeInto(LibraryManager.library, {
       alert("This is a call without parameters");
     },
     alert: function(message) {
-      alert(Module.UTF8ToString(message));
+      alert(UTF8ToString(message));
     },
     get_int: function() {
       return 42;
@@ -15,7 +15,7 @@ mergeInto(LibraryManager.library, {
       const value = "This is string from JS";
       const length = lengthBytesUTF8(value);
       const ptr = _malloc(length + 1);
-      Module.stringToUTF8(value, ptr, length + 1);
+      stringToUTF8(value, ptr, length + 1);
       return ptr;
     },
     int_parameter: function(intOutPtr, intRefPtr) {
