@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <LinkerArg Include="-lidbfs.js" />
+    <!-- <LinkerArg Include="-pthread" />
+    <LinkerArg Include="-sPROXY_TO_PTHREAD" /> -->
   </ItemGroup>
 
   <!-- That's customization which I want that SDK have. -->
@@ -32,11 +34,11 @@
       <KnownILCompilerPack Update="Microsoft.DotNet.ILCompiler"
                          TargetFramework="net7.0"
                          ILCompilerPackNamePattern="runtime.**RID**.Microsoft.DotNet.ILCompiler.LLVM"
-                         ILCompilerPackVersion="7.0.0-preview.5.23113.1"
+                         ILCompilerPackVersion="8.0.0-alpha.1.23172.3"
                          ILCompilerRuntimeIdentifiers="browser-wasm;linux-musl-x64;linux-x64;win-x64;linux-arm;linux-arm64;linux-musl-arm;linux-musl-arm64;osx-arm64;osx-x64;win-arm;win-arm64;win-x86"
                          />
-		<PackageReference Include="Microsoft.DotNet.ILCompiler.LLVM" Version="7.0.0-preview.5.23113.1" />
-		<!-- <PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler.LLVM" Version="7.0.0-preview.5.23113.1" /> -->
+		<PackageReference Include="Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-alpha.1.23172.3" />
+		<!-- <PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-alpha.1.23172.3" /> -->
 	</ItemGroup>
 
 </Project>
