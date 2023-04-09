@@ -11,7 +11,8 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<LinkerArg Include="--post-js &quot;$(MSBuildThisFileDirectory)app.js&quot;" />
+    <EmscriptenPostJs Include="app.js" />
+    <LinkerArg Include="@(EmscriptenPostJs->'--post-js &quot;%(FullPath)&quot;')" />
 	</ItemGroup>
 
 	<ItemGroup>

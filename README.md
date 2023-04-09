@@ -3,9 +3,14 @@ Experiments with NativeAOT WASM
 
 # Well known properties
 
-List of properties whih I wan to see in the SDK.
+List of properties which I want to see in the SDK.
 - `WasmHtmlTemplate` file name which would have HTML template for the generated WASM file. Applicable only to EXE targets. DLL probably should not need that. 
 - `WasmHasCanvas` enable displaying of canvas on the default template. True by default.
+
+# Well known items
+List of properties which I want to see in the SDK. These items mostly to plug additional JS files into MSBuild dependency tracking.
+- `EmscriptenPostJs` Allow pass files to `--post-js`.
+- `EmscriptenLibrary` Allow pass files to `--js-library`.
 
 # How to test
 ```

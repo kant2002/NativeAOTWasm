@@ -12,7 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <LinkerArg Include="--js-library &quot;$(MSBuildThisFileDirectory)js_exports.js&quot;" />
+    <EmscriptenLibrary Include="app.js" />
+    <LinkerArg Include="@(EmscriptenLibrary->'--js-library &quot;%(FullPath)&quot;')" />
   </ItemGroup>
 
   <!-- That's customization which I want that SDK have. -->
