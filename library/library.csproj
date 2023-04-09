@@ -6,23 +6,13 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NativeLib>Shared</NativeLib>
-    <PublishAot>true</PublishAot>
-    <EmccExtraArgs>-s EXPORTED_FUNCTIONS=_Method</EmccExtraArgs>
+    <!-- PublishAot must be not be set -->
+    <!-- <PublishAot>true</PublishAot> -->
   </PropertyGroup>
 
 	<ItemGroup>
-      <!-- Update ILCompiler pack is required since https://github.com/dotnet/sdk/blob/571d48c039a15ab085156cc2d18412aba7638639/src/Tasks/Microsoft.NET.Build.Tasks/ProcessFrameworkReferences.cs#L613-L618 
-          contains implicit assumptions that each TFM can have just one ILC pack.
-          Because _GenerateRestoreGraphProjectEntry which decide what ILC pack to use used ExcludeRestorePackageImports=true
-          There nothing I can do except have KnownILCompilerPack updated in project file. 
-           -->
-      <KnownILCompilerPack Update="Microsoft.DotNet.ILCompiler"
-                         TargetFramework="net7.0"
-                         ILCompilerPackNamePattern="runtime.**RID**.Microsoft.DotNet.ILCompiler.LLVM"
-                         ILCompilerPackVersion="8.0.0-alpha.1.23172.3"
-                         ILCompilerRuntimeIdentifiers="browser-wasm;linux-musl-x64;linux-x64;win-x64;linux-arm;linux-arm64;linux-musl-arm;linux-musl-arm64;osx-arm64;osx-x64;win-arm;win-arm64;win-x86"
-                         />
-		<PackageReference Include="Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-alpha.1.23172.3" />
+		<PackageReference Include="Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
+		<PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
 	</ItemGroup>
 
 </Project>
