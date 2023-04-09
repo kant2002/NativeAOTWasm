@@ -11,6 +11,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<LinkerArg Include="--post-js &quot;$(MSBuildThisFileDirectory)app.js&quot;" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
 		<PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
 	</ItemGroup>
