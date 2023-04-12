@@ -11,11 +11,31 @@ List of properties which I want to see in the SDK. These items mostly to plug ad
 - `EmscriptenPostJs` Allow pass files to `--post-js`.
 - `EmscriptenLibrary` Allow pass files to `--js-library`.
 
+# Steps how to add support for NativeAOT-LLVM
+
+Add following block to your project
+```xml
+  <PropertyGroup>
+    <!-- This is required to opt-out of Mono WASM workloads -->
+    <MSBuildEnableWorkloadResolver>false</MSBuildEnableWorkloadResolver>
+    <!-- Just use dotnet publish since we are unlikely support other RID with this configuration. -->
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <!-- PublishAot must be not be set -->
+    <!-- <PublishAot>true</PublishAot> -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
+    <PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
+    <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="8.0.0-*" Condition="'$(ILLinkTargetsPath)' == ''" />
+  </ItemGroup>
+```
+
 # How to test
 ```
 cd helloworld
 & $env:EMSDK_HOME\emsdk.ps1 activate 3.1.23
-dotnet publish --self-contained -r browser-wasm /p:msBuildEnableWorkloadResolver=false
+dotnet publish
 npx http-server bin/Debug/net7.0/browser-wasm/publish/
 ```
 
