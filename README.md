@@ -31,6 +31,8 @@ Add following block to your project
   </ItemGroup>
 ```
 
+If you want play with WASI, in additional to steps above install `dotnet workload install wasi-experimental` and add `<IsWasiProject>false</IsWasiProject>` to your project to opt-out of WASI-Sdk tooling.
+
 # How to test
 ```
 cd helloworld
