@@ -33,6 +33,13 @@ Add following block to your project
 
 If you want play with WASI, in additional to steps above install `dotnet workload install wasi-experimental` and add `<IsWasiProject>false</IsWasiProject>` to your project to opt-out of WASI-Sdk tooling.
 
+If you want to use `wasmtime` also add
+```
+<ItemGroup>
+    <LinkerArg Include="-Wl,--import-memory,--export-memory" />
+</ItemGroup>
+```
+
 # How to test
 ```
 cd helloworld
