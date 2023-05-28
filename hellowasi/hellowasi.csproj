@@ -17,4 +17,8 @@
     <PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
 	</ItemGroup>
 
+	<ItemGroup>
+    <LinkerArg Include="-Wl,--import-memory,--export-memory" />
+	</ItemGroup>
+
 </Project>
