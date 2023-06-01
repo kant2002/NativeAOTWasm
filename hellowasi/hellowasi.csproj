@@ -7,17 +7,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <IsWasiProject>false</IsWasiProject>
+    <!-- <IsWasiProject>true</IsWasiProject> -->
+    <WasmSingleFileBundle Condition="$(IsWasiProject) == true">true</WasmSingleFileBundle>
     <!-- PublishAot must be not be set -->
     <!-- <PublishAot>true</PublishAot> -->
   </PropertyGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="$(IsWasiProject) != true">
     <PackageReference Include="Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
     <PackageReference Include="runtime.win-x64.Microsoft.DotNet.ILCompiler.LLVM" Version="8.0.0-*" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="$(IsWasiProject) != true">
     <LinkerArg Include="-Wl,--import-memory,--export-memory" />
 	</ItemGroup>
 
