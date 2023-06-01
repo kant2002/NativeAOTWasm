@@ -40,6 +40,8 @@ If you want to use `wasmtime` also add
 </ItemGroup>
 ```
 
+For wasmtime you should enable threading `--enable-threads --wasi-modules experimental-wasi-threads`
+
 # How to test
 ```
 cd helloworld
